@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>All Jobs</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <% jobs = @job_instance.contentful_jobs %>
+</head>
+  <body>
+    <div style="width: 80rem;" >
+    <nav class="flex flex-col items-center align-center" >
+    <div>
+    <p class="text-center text-4xl font-semibold" > Work With Us At Contentful! </p>
+          <br />
+    <p class="text-center text-lg" >
+    Together, let's <strong> deliver </strong> the best CMS experience <br /> that  <strong> developers</strong> and digital  <strong> products</strong> can get!
+    </p>
+    </div>
+    </nav>
+
+  <br />
+  <br />
+
+<section>
+  <div class="flex flex-row justify-between" >
+  <div>
+  <h1 class="pb-2 text-xl font-semibold" > All Open Roles </h1>
+  </div>
+  </div>
+  <hr />
+</section>
+<br />
+
+<section>
+  <ul>
+  <% jobs.each do |product| %>
+  <li class="mb-12 pb-2 shadow-xl rounded-lg">
+  <div>
+  <div class="m-4 flex flex-row justify-between" >
+  <div class="flex" >
+  <div class="flex items-center  border-2 border-gray-600 mr-3 h-20 w-24 rounded-xl" >
+  <img alt="<%= product.title %>" src="https:<%= product.image.url%>" />
+    </div>
+
+<div class="mt-2" >
+  <p class="font-semibold text-lg mb-2" >
+  <%= product.title %>
+  </p>
+
+<div class="pt-1 pb-2">
+<span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Engineering</span>
+<span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= product.salary %></span>
+  </div>
+  </div>
+  </div>
+
+<div class="flex items-center" >
+  <div class="text-right" >
+  <p > <%= product.location %></p>
+  <p > Posted On: <%= product.created_at.strftime("%B %d %Y") %></p>
+  </div>
+  </div>
+  </div>
+<hr />
+<div class="m-4" >
+  <%= @job_instance.rich_renderer.render(product.description).html_safe  %>
+  </div>
+  </div>
+
+  </li>
+    <% end %>
+    </ul>
+    </section>
+  </div>
+</body>
+</html>
