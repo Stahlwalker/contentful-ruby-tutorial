@@ -76,3 +76,4 @@ end
 
 gem "contentful", "~> 2.16"
 gem "rich_text_renderer", "~> 0.3.0"
+gem 'dotenv-rails', groups: [:development, :test]

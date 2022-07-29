@@ -1,8 +1,8 @@
 class JobService
     def initialize
       @client ||= Contentful::Client.new(
-      access_token: 'MEbZjgOnMbCQH_evrhqwwTLWTi8SVu3E0qQ8n54uKGE',
-      space: 'e1d6abr6p6vk',
+      access_token: ENV['CONTENTFUL_ACCESS_TOKEN'],
+      space: ENV['CONTENTFUL_SPACE_ID'],
       dynamic_entries: :auto,
       raise_errors: true
     )
